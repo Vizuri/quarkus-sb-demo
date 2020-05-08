@@ -11,7 +11,7 @@ spec:
       containerConcurrency: 0
       containers:
         - image: 'image-registry.openshift-image-registry.svc:5000/quarkus-sb-demo/quarkus-sb-demo:latest'
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           name: quarkus-sb-demo
           ports:
           - containerPort: 8080
