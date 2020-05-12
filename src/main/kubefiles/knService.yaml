@@ -13,13 +13,23 @@ spec:
         - image: 'image-registry.openshift-image-registry.svc:5000/quarkus-sb-demo/quarkus-sb-demo:latest'
           imagePullPolicy: Always
           name: quarkus-sb-demo
-          ports:
-          - containerPort: 8080
-          resources: {}
+          resources:
+            requests:
+              memory: "50Mi"
+              cpu: "75m"
+            limits:
+              memory: "150Mi"
+              cpu: "150m"
+          livenessProbe:
+            initialDelaySeconds: 1
+            httpGet:
+              path: /health/live
+          readinessProbe:
+            initialDelaySeconds: 1
+            httpGet:
+              path: /health/ready
       timeoutSeconds: 300
   traffic:
     - latestRevision: true
       percent: 100
-
-
 
